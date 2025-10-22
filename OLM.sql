@@ -1,8 +1,7 @@
-create DATABASE Online_Learning;
+CREATE DATABASE Online_Learning;
 use Online_Learning;
 
 SELECT DATABASE();
-
 
 CREATE TABLE  USER(User_ID INT PRIMARY KEY, Name VARCHAR(100), Email VARCHAR(50), Password VARCHAR(20), Role VARCHAR(50));
 CREATE TABLE COURSE(Course_ID VARCHAR(50) PRIMARY KEY, Course_Name VARCHAR(40), Description VARCHAR(100), User_ID INT, Price INT,Foreign Key (User_ID) REFERENCES USER(User_ID))
@@ -31,7 +30,19 @@ INSERT INTO LESSON (Lesson_ID, Course_Name, Course_ID, Lesson_Name, Content_Type
 ('L006-DES', 'UX/UI Fundamentals', 'DES303', 'Design Thinking Process', 'Quiz', 'Not Started');
 
 INSERT INTO PROGRESS (Progress_ID, User_ID, Course_ID, Complete_Percentage, Grade) VALUES
-('P-102-CS101', 102, 'CS101', '50%', 'B+'),
-('P-103-CS101', 103, 'CS101', '100%', 'A'),
-('P-102-WEB202', 102, 'WEB202', '25%', 'N/A'),
-('P-103-DES303', 103, 'DES303', '0%', 'N/A');
+('102', 102, 'CS101', '50%', 'B+'),
+('103', 103, 'CS101', '100%', 'A'),
+('104', 102, 'WEB202', '25%', 'N/A'),
+('105', 103, 'DES303', '0%', 'N/A');
+
+ALTER TABLE course
+ADD CONSTRAINT CHK_COUR_PR CHECK (Price >=0)
+
+ALTER TABLE USER
+ALTER COLUMN Name SET DEFAULT 'Not Assigned';
+
+ALTER TABLE COURSE
+MODIFY COLUMN Description VARCHAR(100) NOT NULL;
+
+ALTER TABLE PROGRESS
+MODIFY Progress_ID INT NOT NULL AUTO_INCREMENT;

@@ -1,3 +1,5 @@
+--MAGEZI RICHARD ELIJAH M24B13/019
+--MARTHA PRAISE KATUSIIME M24B13/057
 CREATE DATABASE Online_Learning;
 use Online_Learning;
 
@@ -66,3 +68,70 @@ SELECT User_ID, Name, Email FROM USER WHERE User_ID = 105;
 INSERT INTO PROGRESS (User_ID, Course_ID, Complete_Percentage, Grade) VALUES
 (102, 'DES303', '10%', 'C');
 SELECT Progress_ID, Complete_Percentage, Grade FROM PROGRESS WHERE Progress_ID = 106;
+
+--Natural Join
+SELECT * FROM USER NATURAL JOIN COURSE
+NATURAL JOIN LESSON
+NATURAL JOIN PROGRESS;
+
+--Inner Join
+SELECT
+ U.User_ID,
+ U.Name,
+ P.Course_ID,
+ P.Grade
+FROM
+ USER U
+INNER JOIN
+ PROGRESS P ON U.User_ID = P.User_ID
+
+--Left Outer
+SELECT
+ U.User_ID,
+ U.Name,
+ U.Role,
+ P.Course_ID,
+ P.Grade
+FROM
+ USER U
+LEFT OUTER JOIN
+ PROGRESS P ON U.User_ID;
+
+--Right Outer Join
+SELECT
+ U.User_ID,
+ U.Name,
+ U.Role,
+ P.Course_ID,
+ P.Grade
+FROM
+ USER U
+RIGHT OUTER JOIN
+ PROGRESS P ON U.User_ID;
+
+--Full Outer Join
+
+
+SELECT
+    U.User_ID,
+    U.Name,
+    P.Course_ID,
+    P.Grade
+FROM
+    USER U FULL OUTER JOIN
+    PROGRESS P ON U.User_ID = P.User_ID; 
+
+SELECT
+    U.Name AS Student,
+    C.Course_Name,
+    C.Price
+FROM
+    USER U,
+    COURSE C
+WHERE
+    U.Role = 'Student' AND C.Price < 70;
+
+--Reflection and Verification
+SHOW CREATE TABLE USER;
+
+----Entity Integrity makes each table row uniquely indentifiable by enforcing a non-null primary key while refferential integrity maintains the validity of relationship between tables by making sure foreign keys match a primary key in another table. These constraints enforce rules on data to ensure consistency and validity thus preventing insertion of inaccurate or corrupted information.The LEFT JOIN would be the one found most useful as it allows for querying all records from the primary table and including information from a related table

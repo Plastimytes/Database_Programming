@@ -21,3 +21,17 @@ INSERT INTO COURSE (Course_ID, Course_Name, Description, User_ID, Price) VALUES
 ('CS101', 'Intro to SQL', 'Learn the basics of database querying and management.', 101, 49),
 ('WEB202', 'Full Stack Dev', 'Build complete web applications using modern frameworks.', 104, 99),
 ('DES303', 'UX/UI Fundamentals', 'Principles of user experience and interface design.', 101, 75);
+
+INSERT INTO LESSON (Lesson_ID, Course_Name, Course_ID, Lesson_Name, Content_Type, Status) VALUES
+('L001-CS', 'Intro to SQL', 'CS101', 'What is a Database?', 'Video', 'Completed'),
+('L002-CS', 'Intro to SQL', 'CS101', 'Basic SELECT Statements', 'Quiz', 'In Progress'),
+('L003-CS', 'Intro to SQL', 'CS101', 'JOIN Operations', 'Video', 'Not Started'),
+('L004-WEB', 'Full Stack Dev', 'WEB202', 'Node.js Backend Setup', 'Document', 'Completed'),
+('L005-WEB', 'Full Stack Dev', 'WEB202', 'Frontend React Basics', 'Video', 'Completed'),
+('L006-DES', 'UX/UI Fundamentals', 'DES303', 'Design Thinking Process', 'Quiz', 'Not Started');
+
+INSERT INTO PROGRESS (Progress_ID, User_ID, Course_ID, Complete_Percentage, Grade) VALUES
+('P-102-CS101', 102, 'CS101', '50%', 'B+'),
+('P-103-CS101', 103, 'CS101', '100%', 'A'),
+('P-102-WEB202', 102, 'WEB202', '25%', 'N/A'),
+('P-103-DES303', 103, 'DES303', '0%', 'N/A');

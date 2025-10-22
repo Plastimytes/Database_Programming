@@ -46,3 +46,23 @@ MODIFY COLUMN Description VARCHAR(100) NOT NULL;
 
 ALTER TABLE PROGRESS
 MODIFY Progress_ID INT NOT NULL AUTO_INCREMENT;
+
+--Testing Constraints
+--Course
+
+--insert into USER (User_ID, Name, Email, Password, Role)VALUES
+--(101, 'Duplicate ID test', 'mark@gmail.com','fail','Student')
+
+--INSERT INTO COURSE (Course_ID, Course_Name, Description, User_ID, Price)VALUES
+--('FAIL1', 'Negative Price Testing', 'Test check constraint',101,-5)
+
+--INSERT INTO COURSE (Course_ID, Course_Name, Description, User_ID, Price)VALUES
+--('FAIL1', 'Negative Price Test', 'Testing CHECK constraint.', 101, -5);
+
+INSERT INTO USER (User_ID, Email, Password, Role) VALUES
+(105, 'noname@test.com', 'autodefault', 'Student');
+
+SELECT User_ID, Name, Email FROM USER WHERE User_ID = 105;
+INSERT INTO PROGRESS (User_ID, Course_ID, Complete_Percentage, Grade) VALUES
+(102, 'DES303', '10%', 'C');
+SELECT Progress_ID, Complete_Percentage, Grade FROM PROGRESS WHERE Progress_ID = 106;

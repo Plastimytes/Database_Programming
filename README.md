@@ -3,7 +3,7 @@ For the assignments on the online learning platform
 
 ##Source Code
 
-create DATABASE Online_Learning;
+CREATE DATABASE Online_Learning;
 use Online_Learning;
 
 SELECT DATABASE();
@@ -14,3 +14,40 @@ CREATE TABLE COURSE(Course_ID VARCHAR(50) PRIMARY KEY, Course_Name VARCHAR(40), 
 CREATE TABLE LESSON(Lesson_ID VARCHAR(50) PRIMARY KEY, Course_Name VARCHAR(40), Course_ID VARCHAR(50), Lesson_Name VARCHAR(40), Content_Type VARCHAR(30), Status VARCHAR(50),Foreign Key (Course_ID) REFERENCES COURSE(Course_ID))
 
 CREATE TABLE PROGRESS(Progress_ID VARCHAR(25) PRIMARY KEY, User_ID INT, Course_ID VARCHAR(50), Complete_Percentage VARCHAR(25), Grade VARCHAR(25),Foreign Key (Course_ID) REFERENCES COURSE(Course_ID),Foreign Key (User_ID) REFERENCES USER(User_ID))
+
+INSERT INTO USER (User_ID, Name, Email, Password, Role) VALUES
+(101, 'Alice Johnson', 'alice.j@email.com', 'securepass1', 'Instructor'),
+(102, 'Bob Smith', 'bob.s@email.com', 'mypassword', 'Student'),
+(103, 'Charlie Brown', 'charlie.b@email.com', 'safeword321', 'Student'),
+(104, 'Diana Prince', 'diana.p@email.com', 'wonderpass', 'Instructor');
+
+INSERT INTO COURSE (Course_ID, Course_Name, Description, User_ID, Price) VALUES
+('CS101', 'Intro to SQL', 'Learn the basics of database querying and management.', 101, 49),
+('WEB202', 'Full Stack Dev', 'Build complete web applications using modern frameworks.', 104, 99),
+('DES303', 'UX/UI Fundamentals', 'Principles of user experience and interface design.', 101, 75);
+
+INSERT INTO LESSON (Lesson_ID, Course_Name, Course_ID, Lesson_Name, Content_Type, Status) VALUES
+('L001-CS', 'Intro to SQL', 'CS101', 'What is a Database?', 'Video', 'Completed'),
+('L002-CS', 'Intro to SQL', 'CS101', 'Basic SELECT Statements', 'Quiz', 'In Progress'),
+('L003-CS', 'Intro to SQL', 'CS101', 'JOIN Operations', 'Video', 'Not Started'),
+('L004-WEB', 'Full Stack Dev', 'WEB202', 'Node.js Backend Setup', 'Document', 'Completed'),
+('L005-WEB', 'Full Stack Dev', 'WEB202', 'Frontend React Basics', 'Video', 'Completed'),
+('L006-DES', 'UX/UI Fundamentals', 'DES303', 'Design Thinking Process', 'Quiz', 'Not Started');
+
+INSERT INTO PROGRESS (Progress_ID, User_ID, Course_ID, Complete_Percentage, Grade) VALUES
+('102', 102, 'CS101', '50%', 'B+'),
+('103', 103, 'CS101', '100%', 'A'),
+('104', 102, 'WEB202', '25%', 'N/A'),
+('105', 103, 'DES303', '0%', 'N/A');
+
+ALTER TABLE course
+ADD CONSTRAINT CHK_COUR_PR CHECK (Price >=0)
+
+ALTER TABLE USER
+ALTER COLUMN Name SET DEFAULT 'Not Assigned';
+
+ALTER TABLE COURSE
+MODIFY COLUMN Description VARCHAR(100) NOT NULL;
+
+ALTER TABLE PROGRESS
+MODIFY Progress_ID INT NOT NULL AUTO_INCREMENT;

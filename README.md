@@ -1,6 +1,7 @@
 # Database_Programming
 For the assignments on the online learning platform
 
+-----------------------------------------
 ##Source Code
 
 CREATE DATABASE Online_Learning;

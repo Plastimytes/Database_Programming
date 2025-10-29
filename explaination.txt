@@ -1,0 +1,129 @@
+SQL Join Definitions
+1. NATURAL JOIN
+A NATURAL JOIN is a type of INNER JOIN that automatically joins two or more tables based on all columns in the tables that have the same name and data type.
+
+Result: It returns only the rows where the values in all matching columns are equal. The duplicate columns from the joined tables are eliminated, appearing only once in the result set.
+
+2. INNER JOIN
+An INNER JOIN (or simple JOIN) is the most common type of join. It combines records from two tables whenever there are matching values in a specified column or set of columns (defined by the ON clause).
+
+Result: It returns only the rows that satisfy the join condition, meaning the key must exist in both tables. Rows without a match in both tables are excluded.
+
+3. LEFT OUTER JOIN (or LEFT JOIN)
+A LEFT OUTER JOIN (often shortened to LEFT JOIN) returns all rows from the left table (the first table listed in the FROM clause) and the matching rows from the right table.
+
+Result: If there is no match for a row in the left table, the columns from the right table are filled with NULL values. It guarantees that every row from the left table is included in the output.
+
+4. RIGHT OUTER JOIN (or RIGHT JOIN)
+A RIGHT OUTER JOIN (often shortened to RIGHT JOIN) returns all rows from the right table (the second table listed in the FROM or JOIN clause) and the matching rows from the left table.
+
+Result: If there is no match for a row in the right table, the columns from the left table are filled with NULL values. It guarantees that every row from the right table is included in the output.
+
+5. FULL OUTER JOIN (or FULL JOIN)
+A FULL OUTER JOIN returns all rows from both the left and right tables, regardless of whether they have a match in the other table.
+
+Result: Where a row has no match in the other table, the columns of the non-matching table will have NULL values. It is the union of the results of a LEFT JOIN and a RIGHT JOIN.
+
+==================================================
+SQL CODE EXPLANATION
+==================================================
+
+1. NATURAL JOIN
+
+Query:
+SELECT * FROM USER NATURAL JOIN COURSE
+NATURAL JOIN LESSON
+NATURAL JOIN PROGRESS;
+
+Explanation:
+- **SELECT \***: Retrieves all columns from the final result set.
+- **NATURAL JOIN**: Automatically joins the four tables (USER, COURSE, LESSON, PROGRESS) based on all columns that share the same name and data type in adjacent tables (e.g., USER and COURSE might share 'User_ID' or 'Course_ID').
+- Result: Returns a combined table containing only the rows where there are matching values across all tables on all common columns.
+
+--------------------------------------------------
+
+2. INNER JOIN
+
+Query:
+SELECT U.User_ID, U.Name, P.Course_ID, P.Grade
+FROM USER U
+INNER JOIN PROGRESS P ON U.User_ID = P.User_ID
+
+Explanation:
+- **U** and **P**: These are aliases for the USER and PROGRESS tables, respectively.
+- **SELECT...**: Retrieves specific columns: User_ID and Name from USER (U), and Course_ID and Grade from PROGRESS (P).
+- **INNER JOIN**: Combines rows from USER and PROGRESS.
+- **ON U.User_ID = P.User_ID**: This is the join condition. It includes only the rows where the User_ID in the USER table *exactly matches* the User_ID in the PROGRESS table.
+- Result: Returns records for users who have progress entries.
+
+--------------------------------------------------
+
+3. LEFT OUTER JOIN
+
+Query:
+SELECT U.User_ID, U.Name, U.Role, P.Course_ID, P.Grade
+FROM USER U
+LEFT OUTER JOIN PROGRESS P ON U.User_ID;
+
+Explanation:
+- **LEFT OUTER JOIN** (or LEFT JOIN): Returns **all rows** from the **left table (USER)**, and the matching rows from the right table (PROGRESS).
+- **ON U.User_ID;**: *Note: This join condition is syntactically incomplete in the original code. It should be ON U.User_ID = P.User_ID.*
+- If a user in the USER table has no matching entry in PROGRESS, the columns from PROGRESS (Course_ID, Grade) will show as **NULL**.
+- Result: Returns all users, whether or not they have any progress records.
+
+--------------------------------------------------
+
+4. RIGHT OUTER JOIN
+
+Query:
+SELECT U.User_ID, U.Name, U.Role, P.Course_ID, P.Grade
+FROM USER U
+RIGHT OUTER JOIN PROGRESS P ON U.User_ID;
+
+Explanation:
+- **RIGHT OUTER JOIN** (or RIGHT JOIN): Returns **all rows** from the **right table (PROGRESS)**, and the matching rows from the left table (USER).
+- **ON U.User_ID;**: *Note: This join condition is syntactically incomplete in the original code. It should be ON U.User_ID = P.User_ID.*
+- If a progress entry in the PROGRESS table has no matching user in USER, the columns from USER (User_ID, Name, Role) will show as **NULL**.
+- Result: Returns all progress records, whether or not a valid user exists for that record.
+
+--------------------------------------------------
+
+5. FULL OUTER JOIN
+
+Query:
+SELECT U.User_ID, U.Name, P.Course_ID, P.Grade
+FROM USER U FULL OUTER JOIN
+PROGRESS P ON U.User_ID = P.User_ID;
+
+Explanation:
+- **FULL OUTER JOIN** (or FULL JOIN): Returns **all rows** when there is a match in *either* the left table (USER) or the right table (PROGRESS).
+- If a row exists in one table but not the other, the columns from the non-matching table will show as **NULL**.
+- Result: Returns a union of the LEFT JOIN and RIGHT JOIN results.
+
+--------------------------------------------------
+
+6. Selection Query with WHERE Clause
+
+Query:
+SELECT U.Name AS Student, C.Course_Name, C.Price
+FROM USER U, COURSE C
+WHERE U.Role = 'Student' AND C.Price < 70;
+
+Explanation:
+- **U.Name AS Student**: Retrieves the user's name and renames the output column to **Student**.
+- **FROM USER U, COURSE C**: Specifies both tables; the comma implies a join (specifically a CROSS JOIN, unless explicitly conditioned).
+- **WHERE U.Role = 'Student'**: Filters the users to only those with the role 'Student'.
+- **AND C.Price < 70**: Further filters the result to courses priced less than 70.
+- Result: Returns the combination (Cartesian product) of every student's name and every course with a price under 70.
+
+--------------------------------------------------
+
+7. Reflection and Verification
+
+Query:
+SHOW CREATE TABLE USER;
+
+Explanation:
+- **SHOW CREATE TABLE USER**: This is a database command (common in MySQL/MariaDB) that retrieves and displays the **original SQL statement** used to create the **USER** table.
+- Result: Provides the table's structural definition, including column names, data types, and constraints.
+==================================================

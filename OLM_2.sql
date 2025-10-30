@@ -324,7 +324,7 @@ DELETE FROM COURSE WHERE Course_ID ='CS101';
 --Other trigger types
 --After Insert/Update-Makes data bend to a specific formatt before inserting and saving
 --Before Insert/Update-Auto clcaulating derived data?
---More research to be made
+--More research to be made about these two 
 
 
 

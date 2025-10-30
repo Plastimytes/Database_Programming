@@ -312,18 +312,19 @@ DELIMITER;
 
 --Testing the triggers
 ---It won't delete course with exiting lessons
-INSERT INTO LESSON (Lesson_ID, Course_Name, Course_ID, Lesson_Name, Content_Type, Status)
-VALUES ('L001', 'Intro to SQL', 'CS101', 'SQL Basics', 'Video', 'Active');
 
+INSERT INTO LESSON (Lesson_ID, Course_Name, Course_ID, Lesson_Name, Content_Type, Status)
+VALUES ('L001', 'Intro to SQL', 'CS101', 'SQL Basics', 'Video','Active');
 
 DELETE FROM COURSE WHERE Course_ID ='CS101';
 
 
 
 
-
-
-
+--Other trigger types
+--After Insert/Update-Makes data bend to a specific formatt before inserting and saving
+--Before Insert/Update-Auto clcaulating derived data?
+--More research to be made
 
 
 

@@ -158,6 +158,7 @@ END//
 
 DELIMITER;
 
+
 --After Insert trigger is one that is executed afetr a new row has been successfully inserted
 --First an audit table to log the enrollments
 CREATE TABLE Enrol_log(
@@ -190,8 +191,8 @@ VALUES (104, 'CS101', 'N/A');
 --Verifying
 SELECT Progress_ID, User_ID, Course_ID, Complete_Percentage, Grade
 FROM PROGRESS
-WHERE User_ID = 103 AND Course_ID = 'WEB202';
-
+WHERE User_ID = 104 AND Course_ID = 'CS101';
+select * from progress;
 --After trigger 
 INSERT INTO COURSE(Course_ID, Course_Name, Description, User_ID, Price)
 VALUES ('AI401','Introduction to Computing', 'Fudamentals of Computing', 104, 129);
@@ -200,6 +201,8 @@ VALUES ('AI401','Introduction to Computing', 'Fudamentals of Computing', 104, 12
 SELECT Log_ID, User_ID, Course_ID, Enrollment_Time, Action_Description
 FROM Enrol_log
 WHERE Course_ID = 'AI401';
+
+--Needs fixing 
 SELECT User_ID FROM USER;
 
 

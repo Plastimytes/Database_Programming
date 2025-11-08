@@ -220,6 +220,8 @@ UNION
 
 -- Example 
 SELECT * FROM v_User_Progress_Full;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ----Entity Integrity makes each table row uniquely indentifiable by enforcing a non-null primary key while refferential integrity maintains the validity of relationship between tables by making sure foreign keys match a primary key in another table. These constraints enforce rules on data to ensure consistency and validity thus preventing insertion of inaccurate or corrupted information.The LEFT JOIN would be the one found most useful as it allows for querying all records from the primary table and including information from a related table
 

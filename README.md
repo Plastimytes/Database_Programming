@@ -54,4 +54,7 @@ ALTER TABLE PROGRESS
 MODIFY Progress_ID INT NOT NULL AUTO_INCREMENT;
 
 
-Triggers have been inserted into the code
+Triggers have been inserted into the code. 
+
+
+The joins have been set under views. Full Outer, Left Outer, Right Outer, Natural etc.

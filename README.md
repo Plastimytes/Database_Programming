@@ -52,3 +52,6 @@ MODIFY COLUMN Description VARCHAR(100) NOT NULL;
 
 ALTER TABLE PROGRESS
 MODIFY Progress_ID INT NOT NULL AUTO_INCREMENT;
+
+
+Triggers have been inserted into the code
